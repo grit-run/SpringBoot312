@@ -4,13 +4,17 @@ import com.elinsky.threeonetwo.model.User;
 import com.elinsky.threeonetwo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
+
         this.userRepository = userRepository;
     }
 
@@ -20,21 +24,25 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void createUser(User user) {
         userRepository.save(user);
     }
 
-    @Override
-    public void updateUser(User user) {
+    public void updateUser(long id, User updUser) {
+        updUser.setId(updUser.getId());
+        userRepository.save(updUser);
      }
 
     @Override
-    public User readUser(long id) {
-        return null;
-    }
+    @Transactional
+    public Optional<User> findOneUser(long id) {
+        return userRepository.findById(id);
+       }
 
     @Override
-    public User deleteUser(long id) {
-        return null;
+    @Transactional
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
     }
 }
