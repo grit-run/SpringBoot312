@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/")
 public class UsersController {
     public final UserServiceImpl userServiceImpl;
 

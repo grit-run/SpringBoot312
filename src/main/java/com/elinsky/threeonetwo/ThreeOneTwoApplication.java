@@ -13,9 +13,9 @@ public class ThreeOneTwoApplication {
         SpringApplication.run(ThreeOneTwoApplication.class, args);
     }
 
-    @GetMapping
-    public String firstBoot() {
-        return "first SBA";
-    }
+//    @GetMapping
+//    public String firstBoot() {
+//        return "first SBA";
+//    }
 
 }
